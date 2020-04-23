@@ -5,7 +5,7 @@
 ## 兼容性
 
  - **Android:** 4.4+ （原生浏览器）
- - **Chrome for Android:** 16+
+ - **Chrome 内核浏览器
  - **iOS:** 仅支持Safari浏览器
 
 ## 用法
