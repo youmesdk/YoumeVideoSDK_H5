@@ -2,6 +2,12 @@
 
 本 SDK 对 WebRTC 和游密信令服务器、游密 turn 服务器进行统一封装，开发者申请了游密 appKey 后，使用本 SDK 即可简单快速地实现实时视频和实时语音功能。
 
+## 兼容性
+
+ - **Android:** 4.4+ （原生浏览器）
+ - **Chrome for Android:** 16+
+ - **iOS:** 仅支持Safari浏览器
+
 ## 用法
 
 使用本 SDK 只要四步。
@@ -258,11 +264,16 @@ RTC 类
 <a name="YMRTC+requestUserStream"></a>
 
 ### ymrtc.requestUserStream(userId) ⇒ <code>Promise</code>
-异步请求一个成员的媒体流（stream）。若未与此成员建立连接，则等待连接完成，否则直接回调已存在的媒体流。**注意**：中途媒体流对象可能会发生改变，请监听“`user.update-stream`”事件以对界面做出相应的改变。
+异步请求一个成员的媒体流（stream）。若未与此成员建立连接，
+则等待连接完成，否则直接回调已存在的媒体流。
+**注意**：中途媒体流对象可能会发生改变，请监听
+“`user.update-stream`”事件以对界面做出相应的改变。
 
 **类型**: 实例方法(method)，来自 [<code>YMRTC</code>](#YMRTC)  
 **分类**: 成员控制  
-**完成回调**: <code>MediaStream</code> - 得到的媒体流对象，赋值给 `<video>` 或 `<audio>` 的 `srcObject` 属性即可播放。关于此对象的更多资料，可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)  
+**完成回调**: <code>MediaStream</code> - 得到的媒体流对象，
+赋值给 `<video>` 或 `<audio>` 的 `srcObject` 属性即可播放。
+关于此对象的更多资料，可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)  
 **拒绝回调**: <code>void</code> - 由于会一直等待媒体流，因此暂时未设定请求失败的情况  
 
 | 参数 | 类型 | 描述 |
@@ -310,7 +321,8 @@ RTC 类
 <a name="YMRTC+event_user.ice-status_[memberId]_[status]"></a>
 
 ### "event:user.ice-status:[memberId]:[status]"
-原生 ICE (RTC.iceConnectionState) 状态有改变，可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/iceConnectionState)
+原生 ICE (RTC.iceConnectionState) 状态有改变，
+可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/iceConnectionState)
 
 **类型**: 事件，由 [<code>YMRTC</code>](#YMRTC) 触发  
 **分类**: 成员控制  
@@ -497,8 +509,11 @@ RTC 类
 
 **类型**: 实例方法(method)，来自 [<code>YMRTC</code>](#YMRTC)  
 **分类**: 本地媒体控制  
-**完成回调**: <code>MediaStream</code> - 启动成功，获得本地媒体流对象，赋值给 `<video>` 或 `<audio>` 的 `srcObject` 属性即可播放。关于此对象的更多资料，可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)  
-**拒绝回调**: <code>DOMException</code> - 启动失败，获得原生的错误对象。                         具体错误可参见 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Return_value)。  
+**完成回调**: <code>MediaStream</code> - 启动成功，获得本地媒体流对象，
+赋值给 `<video>` 或 `<audio>` 的 `srcObject` 属性即可播放。
+关于此对象的更多资料，可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)  
+**拒绝回调**: <code>DOMException</code> - 启动失败，获得原生的错误对象。
+                         具体错误可参见 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Return_value)。  
 <a name="YMRTC+pauseLocalMedia"></a>
 
 ### ymrtc.pauseLocalMedia()
@@ -570,16 +585,20 @@ RTC 类
 获取本地媒体的当前状态。
 
 **类型**: 实例方法(method)，来自 [<code>YMRTC</code>](#YMRTC)  
-**返回值**: <code>string</code> - - `stop`: 未启动，<br>`starting`: 正在尝试启动，`recording`: 已经启动，正在录音和/或录像，`failed`: 启动失败  
+**返回值**: <code>string</code> - - `stop`: 未启动，<br>`starting`: 正在尝试启动，
+`recording`: 已经启动，正在录音和/或录像，`failed`: 启动失败  
 **分类**: 本地媒体控制  
 <a name="YMRTC+requestLocalMediaStream"></a>
 
 ### ymrtc.requestLocalMediaStream() ⇒ <code>Promise</code>
-异步请求本地媒体流 (stream)。若本地媒体尚未启动，则等待启动成功，否则直接回调已存在的媒体流。
+异步请求本地媒体流 (stream)。若本地媒体尚未启动，
+则等待启动成功，否则直接回调已存在的媒体流。
 
 **类型**: 实例方法(method)，来自 [<code>YMRTC</code>](#YMRTC)  
 **分类**: 本地媒体控制  
-**完成回调**: <code>MediaStream</code> - 获得本地媒体流赋值给 `<video>` 或 `<audio>` 的 `srcObject` 属性即可播放。关于此对象的更多资料，可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)  
+**完成回调**: <code>MediaStream</code> - 获得本地媒体流
+赋值给 `<video>` 或 `<audio>` 的 `srcObject` 属性即可播放。
+关于此对象的更多资料，可参阅 [mdn 文档](https://developer.mozilla.org/en-US/docs/Web/API/MediaStream)  
 **拒绝回调**: <code>DOMException</code> - 启动失败，获得原生的错误对象。  
 <a name="YMRTC+event_local-media.status_[status]"></a>
 
